@@ -1,7 +1,5 @@
 const immutable = require('immutable')
 
-const JSONStreamStringify = require('json-stream-stringify')
-
 const nativeTypeHelpers = require('./helpers/native-type-helpers')
 
 
@@ -33,15 +31,6 @@ function serialize(data, options = {}) {
   const indentation = options.pretty ? 2 : 0
 
   return JSON.stringify(data, replace, indentation)
-}
-
-
-function createSerializationStream(data, options = {}) {
-  const indentation = options.pretty ? 2 : 0
-  const replacer = options.bigChunks ? replace : replaceAsync
-
-  const stream = JSONStreamStringify(data, replacer, indentation)
-  return stream
 }
 
 
@@ -197,6 +186,5 @@ function replacePlainObject(obj, replaceChild) {
 
 
 module.exports = {
-  createSerializationStream,
   serialize,
 }
